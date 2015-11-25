@@ -1,0 +1,178 @@
+\documentclass[portrait,11pt]{seminar}
+
+\include{header810slides}
+\usepackage{url}
+\begin{document}
+\bs
+{\bf
+
+``Some familiarity with command line Unix/Linux is a basic research skill.''
+}
+ 
+Is that true? Why?
+
+\es
+\bs
+\bf
+
+``As of November 2014, 97\% of the world's 500 fastest supercomputers run some variant of Linux, including the top 80.''
+
+
+(\url{http://en.wikipedia.org/wiki/Linux})
+
+In 2012,  90\%, including the 10 fastest.
+
+\es
+
+\bs \bf
+Take a look over the tutorials at \url{http://www.ee.surrey.ac.uk/Teaching/Unix}. Does the material in Tutorials 1--5 seem fairly familiar, or entirely unfamiliar?
+
+\normalfont
+entirely or almost entirely unfamiliar: 40\%
+
+somewhat familiar: 40\% 
+
+confident user: 20\%
+
+\es
+
+\bs
+\medskip
+
+{\it ``I have made the switch from Windows to Linux 2 years ago and will probably not go back.''} 
+
+\medskip
+
+AS PREPARATION FOR A RESEARCH CAREER IN STATISTICS, I ENCOURAGE THIS SWITCH!
+
+\es
+
+\bs
+\bf Why Linux?
+
+\es
+
+\bs
+\bf Do statisticians even need to be able to use powerful scientific computing environments, such as clusters?
+
+\es
+
+\bs
+{\bf Why R? What are the alternatives? How about Matlab, or Python, or something else...
+}
+\medskip
+
+not much R experience: 10\%
+
+moderate R confidence or more: 90\%
+
+\es
+
+%\bs
+%``Sometimes I really have trouble to find the certain code I need quickly . For example, in my stats-600 homework last time, I tried to find how to create a correlated random vector in R. I just don’t know how to search it in R-manual.''
+%\es
+
+\bs 
+
+R topics of particular interest: packages, object oriented programming
+
+R recommendations: Hadley Wickham's books; the plyr package
+
+\es
+\bs
+
+\bf
+
+
+
+\es \bs 
+
+{\bf
+
+Often it is convenient to link some simple C code with R to make the most computationally intensive part of an analysis run quickly. How much programming have you done in a low-level language like C or C$++$? 
+}
+%\normalfont 
+
+%most of us have some C$++$ education, perhaps from an undergrad course, which has not been used for much practical purpose.
+
+essentially none: 30\%
+
+one or two classes, not much else: 50\%
+
+confident user: 20\%
+
+\es \bs \bf
+
+ Does the sample C code on the course website (\url{http://www.dept.lsa.umich.edu/~ionides/810/gompertz.c}) seem readable to you? Are you comfortable with the use of pointers (passing by reference versus passing by value) in this code?
+
+\normalfont
+Googling ``C  pointers wikipedia'' gives
+
+\url{http://en.wikipedia.org/wiki/Pointer_computer_programming}
+
+\es \bs \bf
+
+(This code uses the \texttt{Rmath.h} header file to access versions of various R functions from within C. This is described at \url{http://cran.r-project.org/doc/manuals/R-exts.html})
+
+\normalfont
+\es
+
+\bs
+\bf
+What is Flux? (google: ``flux umich'')
+
+\medskip
+
+
+\es
+
+\bs
+\bf
+
+Only one response indicated regular use of git. Two responses indicated some use. Many others expressed interest in learning this tool. 
+
+\medskip
+
+Who uses git/github and why?
+
+\medskip
+
+Should we be using it?
+
+\es
+
+\bs
+A bit of history:
+
+Git was developed by Linus Torvalds in 2005, when he decided no existing code management system was suitable for development of the Linux kernel.
+
+(\url{https://en.wikipedia.org/wiki/Git_%28software%29})
+
+Git provides the foundation for GitHub, the largest source code repository in the world.  Bitbucket is another notable git repository, among many others. It is also fairly easy to use git to share files privately, without using an internet repository.
+
+\es
+
+\bs
+{\bf A powerful statistical research environment}
+
+{\bf Linux} operating system
+
+{\bf Latex} document preparation
+
+{\bf R} data analysis and software development
+
+{\bf C/C++} only for time-limited parts of the computation
+
+{\bf Linux clusters} for computationally intensive analysis
+
+{\bf R packages} for software communication
+
+{\bf git} for development and sharing of code
+
+\medskip
+
+{\bf What do all these components have in common?}
+
+\es
+
+\end{document}

@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\pagestyle{empty}
+\begin{document}
+<<setup, include=FALSE, cache=FALSE, echo=FALSE>>=
+library(knitr)
+class1 <- as.Date("2015-9-10")
+@
+
+\begin{center}
+{\LARGE 810 Fall \Sexpr{format.Date(class1,format='%Y')}}
+
+\medskip
+
+<<schedule,echo=FALSE,results='asis'>>=
+library(xtable)
+entries <- c(
+"What is RCRS? Why discuss it?",
+"Building and maintaining healthy mentor/mentee relationships.",
+"Publication and peer review.",
+"Data and the reproducibility of research results.",
+"Mistakes and how to avoid them. When is a mistake negligence?",
+"Recognizing and responding to conflicts of interest.",
+"Collaborative research; human participants and animal subjects.",
+"Misconduct: Plagiarism, falsification, fabrication.",
+"Encouraging responsible conduct in class, as teacher and student.",
+"R, Latex, Unix",
+"Communicating statistical methodology; R packages and git",
+"THANKSGIVING",
+"High performance and parallel computing; the UM Flux cluster.",
+"Reproducible research; the R package Knitr; R markdown"
+)
+
+date.offsets <- (0:(length(entries)-1) )*7
+dates <- format.Date(class1+date.offsets,format="%b %d")
+tab <- cbind(dates,entries)
+xt <- xtable(tab, align="|c|ll|")
+print(xt,include.rownames=F,
+ hline.after=c(0,nrow(tab)),
+ include.colnames=F,floating=FALSE)
+@
+
+\medskip
+
+Thursday 10-11 in 3265 USB. 
+
+\end{center}
+\end{document}
+

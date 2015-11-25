@@ -1,0 +1,55 @@
+#!/bin/csh
+##This names the job for the queueing system
+#PBS -N stats810hw11
+
+##This denotes the queue that the job should be run in.
+#PBS -q flux
+
+##This denotes the allocation within the queue
+#PBS -A stats_flux
+
+##Setting "quality of service" = flux appears to be required.
+#PBS -l qos=flux
+
+##This denotes the number of nodes and processors for the job.
+##PBS -l nodes=1:ppn=8 
+##For embarrassingly parallel computing, instead select 
+##the number of processors, sometimes adding one to run the
+##master R process
+#PBS -l procs=5,pmem=4000mb
+
+##This is the run time (hh:mm:ss) that your job will be allocated.  
+##It will be killed if it exceeds its walltime.
+##Extreme over-estimation may slow your job in the queue.
+#PBS -l walltime=5:00
+
+##Import the shell's environment
+##This is important if you're using Environment Modules 
+##(i.e. module load ...)
+#PBS -V
+
+##In what circumstances should an email be sent regarding this job?  
+##'a' is for aborted jobs,
+##'b' is when the job starts, 
+##'e' is when the job exits.
+#PBS -m abe
+
+##Where should email be sent when the job starts and stops?
+#PBS -M ionides@umich.edu
+
+##Concatenates standard output and error messages.
+##This is recommented at http://cac.engin.umich.edu/resources/software/pbs
+#PBS -j oe
+
+##code to be run
+
+##   By default,
+##   PBS scripts execute in your home directory, not the
+##   directory from which they were submitted. The following
+##   line places you in the directory from which the job
+##   was submitted.
+##
+cd $PBS_O_WORKDIR
+
+R CMD BATCH --vanilla gompertzTest.R gompertzTest.out
+

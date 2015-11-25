@@ -1,0 +1,100 @@
+\documentclass[portrait,11pt]{seminar}
+\usepackage{verbatim}
+\include{header810slides}
+\usepackage{url}
+\begin{document}
+\bs
+{\bf How should student assessment should be carried
+out in a core PhD Statistics course such as Stats 620?}
+
+\it 
+A. ``The student assessment should put less weight on homework, since the homework scores can't reflect too much about the ability of student.''
+
+
+B. ``As a student, it would be great if student assessment was largely determined by homework since most students did quite well on the homework.''
+
+C. ``I think that different parts of assessment will facus on evaluate the different parts of students learning and from the result, these aspects are not highly correlated. So I think it’s necessary to evaluate different parts separately and then give weighted mean of diffferent parts of scores as a final score.''
+
+\es
+
+\bs
+\it ``The negative correlation between inclass variable and homework variable is due to the scores of three students.''
+
+
+\es
+
+\bs
+\it ``We see that average homework scores are generally very high, with little variation between students. This is probably due to the fact that students can work on homework assignments for a while, talk to their classmates about problems, and generally get the right answers before turning in the assignment. Another possible, and somewhat likely, explanation is that GSIs are pretty lenient graders.''
+
+\es
+
+\bs
+{\bf Perhaps homework effort is more closely related to improvement during the course than it is to either of the inclass exams scores individually.}
+
+\it ``The correlation between the improvement and homework is not very strong (0.30). Although by looking at the plot, the homework scores are too similar for improvement to have a significant effect.''
+
+
+``It can be seen that the correlation between homework and improve is the highest (in terms of absolute value) among all correlations related to homework. Especially, it is much higher than the correlation between homework and inclass, and homework and final.''
+
+
+\es
+\bs
+\it ``Actually, I use ’compile PDF’ button on the RStudio and it works.''
+
+\es
+
+\bs
+
+\begin{verbatim}
+> attach(Z)
+> diff=final-inclass
+> t.test(diff,alternative="greater",mu=0)
+One Sample t-test
+data: diff
+t = 9.5775, df = 30, p-value = 6.191e-11
+alternative hypothesis: true mean is 
+greater than 0
+95 percent confidence interval:
+12.42143
+Inf
+sample estimates:
+mean of x
+15.09677
+
+Based on the results, we can reject the null 
+hypothesis and conclude that there is an
+improvement from the inclass midterm to the 
+final exam.
+\end{verbatim}
+\es
+
+\bs
+\bi
+\item
+What is RCRS? Why discuss it?
+
+\item
+Building and maintaining healthy mentor/mentee relationships.
+
+\item
+Publication and peer review. 
+\item
+Data and the reproducibility of research results. 
+\item
+Mistakes and how to avoid them. 
+\item
+ Recognizing and responding to conflicts of interest.
+\item
+Misconduct: Plagiarism, falsification, fabrication. 
+\item
+ Encouraging responsible conduct in class.
+\item
+R and R packages.
+\item
+High performance and parallel computing.
+\item
+Reproducible research; the R package Knitr.
+\ei
+\es
+
+\end{document}

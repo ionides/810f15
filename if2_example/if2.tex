@@ -1,0 +1,622 @@
+\documentclass{pnastwo}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\bibliographystyle{pnas2009}
+
+\newcommand\secWeakConvergence{S1}
+\newcommand\secIIS{S2}
+\newcommand\secGaussianIIS{S3}
+\newcommand\secConjugacy{S4}
+\newcommand\secPMCMC{S5}
+\newcommand\SupSecLW{S6}
+\newcommand\SupSecESS{S7}
+\newcommand\SupSecBiBii{S8}
+\newcommand\SupSecThmDetails{S9}
+\newcommand\mySection{{Sec.$\,$}}
+\newcommand\myFigure{{Fig.$\,$}}
+\newcommand\levelmax{{\lambda_0}}
+\newcommand\leveli{{\lambda_1}}
+\newcommand\levelii{{\lambda_2}}
+\newcommand\levelmin{{\lambda_3}}
+\newcommand\level{{\lambda}}
+\newcommand\mystretch{\rule[-2mm]{0mm}{5mm} }   
+\newcommand\mytheta{\theta}
+\newcommand\normal{{\mathrm{Normal}}}
+\newcommand\HBf{\tilde f}
+\newcommand\timeset{{\mathbb{T}}}
+\newcommand\fzero{f}
+\newcommand\transpose{\prime}
+\newcommand\given{{\, | \,}}
+\newcommand\giventh{\,;}
+\newcommand\mycolon{{\hspace{0.6mm}:\hspace{0.6mm}}}
+\def\R{\mathbb{R}}
+\newcommand\lik{\ell}
+\newcommand\Xspace{{\mathbb X}}
+\newcommand\Yspace{{\mathbb Y}}
+\newcommand\Thetaspace{{\bbTheta}}
+\newcommand\hatTheta{\widehat{\Theta}}
+\newcommand\Xdim{{\mathrm{dim}}(\Xspace)}
+\newcommand\Ydim{{\mathrm{dim}}(\Yspace)}
+\newcommand\Thetadim{{\mathrm{dim}}(\Thetaspace)}
+\newcommand\listA{A}
+\newcommand\listB{B}
+\newcommand\Ci{C_1}
+\newcommand\Cii{C_2}
+\newcommand\Ca{C}
+\newcommand\Cb{C_3}
+\newcommand\Cc{C_4}
+\newcommand{\bbOmega}{\Omega}
+\newcommand{\bbTheta}{\Theta}
+\newcommand\IF{IF2}
+\newcommand\IIS{IIS2}
+\newcommand\asp{\hspace{4mm}}
+\newcommand\Msigma{M}
+\newcommand{\conditionList}{ %\setlength{\leftmargin}{0.2cm} 
+\setlength{\topsep}{1mm} \setlength{\itemsep}{0.5mm} \setlength{\parsep}{0cm}}
+\newcommand\prob{\mathbb{P}}
+\newcommand\E{\mathbb{E}}
+
+\usepackage{amsmath, amssymb, amscd}
+
+%% For PNAS Only:
+
+\url{www.pnas.org/cgi/doi/10.1073/pnas.0709640104}
+\copyrightyear{2008}
+\issuedate{Issue Date}
+\volume{Volume}
+\issuenumber{Issue Number}
+%\setcounter{page}{2687} %Set page number here if desired
+%%%%%%%%%%%%
+
+
+
+
+
+
+
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\title{Inference for dynamic and latent variable models via iterated, perturbed Bayes maps}
+
+\author{Edward L. Ionides\affil{1}{University of Michigan, Ann Arbor, Michigan},
+Dao Nguyen\affil{1}{},
+Yves Atchad\'{e}\affil{1}{}, Stilian Stoev\affil{1}{} 
+\and
+Aaron A. King\affil{1}{}
+}
+
+\contributor{Submitted to Proceedings of the National Academy of Sciences
+of the United States of America}
+
+\significancetext{Many scientific challenges involve the study of stochastic dynamic systems about which only noisy or incomplete measurements are available. Inference for partially observed Markov process models provides a framework for formulating and answering questions about these systems. Except when the system is small, or approximately linear and Gaussian, state-of-the-art statistical methods are required to make efficient use of available data. Evaluation of the likelihood for a partially observed Markov process model can be formulated as a filtering problem. Iterated filtering algorithms carry out repeated Monte Carlo filtering operations to maximize the likelihood. We develop a new theoretical framework for iterated filtering and construct a new algorithm that dramatically out-performs previous approaches on a challenging inference problem in disease ecology.}
+
+\maketitle
+
+\begin{article}
+\begin{abstract}
+{Iterated filtering algorithms are stochastic optimization procedures for latent variable models that recursively combine parameter perturbations with latent variable reconstruction.
+Previously, theoretical support for these algorithms has been based on the use of conditional moments of perturbed parameters to approximate derivatives of the log likelihood function. 
+Here, a new theoretical approach is introduced based on the convergence of an iterated Bayes map.
+A new algorithm supported by this theory displays substantial numerical improvement on the computational challenge of inferring parameters of a partially observed Markov process.}
+\end{abstract}
+
+\keywords{sequential Monte Carlo | particle filter | maximum likelihood | Markov process}
+
+\abbreviations{POMP, partially observed Markov process ; MLE, maximum likelihood estimate; CLT, central limit theorem}
+
+\dropcap{A}n iterated filtering algorithm was originally proposed for maximum likelihood inference on partially observed Markov process (POMP) models by Ionides et al \cite{ionides06-pnas}. 
+Variations on the original algorithm have been proposed to extend it to general latent-variable models \cite{ionides11} and to improve numerical performance \cite{doucet13,lindstrom12}.
+In this paper, we study a new iterated filtering algorithm which generalizes the data cloning method  \cite{lele07,lele10} and is therefore also related to other Monte Carlo methods for likelihood-based inference \cite{doucet02,gaetan03,jacquier07}.
+Data cloning methodology is based on the observation that iterating a Bayes map converges to a point mass at the maximum likelihood estimate.
+Combining such iterations with perturbations of model parameters improves the numerical stability of data cloning and provides a foundation for stable algorithms in which the Bayes map is numerically approximated by sequential Monte~Carlo computations.
+
+
+We investigate convergence of a sequential Monte Carlo implementation of an iterated filtering algorithm which combines data cloning, in the sense of Lele et al \cite{lele07}, with the stochastic parameter perturbations used by the iterated filtering algorithm of \cite{ionides06-pnas}.
+Lindstr\"{o}m et al \cite{lindstrom12} proposed a similar algorithm, termed {fast iterated filtering}, but the theoretical support for that algorithm involved unproved conjectures.
+We present convergence results for our algorithm, which we call IF2.
+Empirically, it can dramatically out-perform the previous iterated filtering algorithm of \cite{ionides06-pnas}, which we refer to as IF1.
+Though IF1 and IF2 both involve recursively filtering through the data, the theoretical justification and practical implementations of these algorithms are fundamentally different. 
+IF1 approximates the Fisher score function, whereas IF2 implements an iterated Bayes map.
+IF1 has been used in applications for which no other computationally feasible algorithm for statistically efficient, likelihood-based inference was known
+\cite{king08,laneri10,he10,blackwood13,shrestha13,blake14}. 
+The extra capabilities offered by IF2 open up further possibilities for drawing inferences about nonlinear partially observed stochastic dynamic models from time series data.
+
+
+Iterated filtering algorithms implemented using basic sequential Monte~Carlo techniques have the property that they do not need to evaluate the transition density of the latent Markov process.
+Algorithms with this property have been called plug-and-play \cite{breto09,he10}. 
+Various other plug-and-play methods for POMP models have been recently proposed \cite{andrieu10,toni09,wood10,shaman12}, due largely to the convenience of this property in scientific applications.
+
+\section{An algorithm and related questions}  
+
+A general POMP model consists of an unobserved stochastic process $\{X(t),t\ge t_0\}$ with observations $Y_{1},\dots,Y_N$ made at times $t_1,\dots,t_N$. 
+  We suppose that $X(t)$ takes values in $\Xspace\subset \R^{\Xdim}$, $Y_n$ takes values in $\Yspace\subset \R^{\Ydim}$, and there is an unknown parameter $\theta$ taking values in $\Thetaspace\subset\R^{\Thetadim}$.
+We adopt notation $y_{m:n}=y_m,y_{m+1},\dots,y_n$ for integers $m\le n$, so we write the collection of observations as $Y_{1:N}$.
+Writing $X_n=X(t_n)$, the joint density of $X_{0:N}$ and $Y_{1:N}$ is assumed to exist, and the Markovian property of $X_{0:N}$ together with the conditional independence of the observation process means that this joint density can be written as
+\begin{equation}\nonumber
+\begin{array}{l}
+f_{X_{0:N},Y_{1:N}}(x_{0:N},y_{1:N}\giventh\theta)\\
+ = f_{X_0}(x_0\giventh\theta){\displaystyle \prod_{n=1}^N} 
+f_{X_n|X_{n-1}}(x_n\given x_{n-1}\giventh\theta)f_{Y_n|X_{n}}(y_n\given x_{n}\giventh\theta).
+\end{array}
+\end{equation}
+The data consist of a sequence of observations, $y^*_{1:N}$.
+We write $f_{Y_{1:N}}(y_{1:N}\giventh\theta)$ for the marginal density of $Y_{1:N}$, and the likelihood function is defined to be $\lik(\theta)=f_{Y_{1:N}}(y^*_{1:N}\giventh\theta)$.
+We look for a maximum likelihood estimate (MLE), i.e., a value $\hat\theta$ maximizing $\lik(\theta)$.
+The IF2 algorithm defined below provides 
+
+\newpage
+
+\vspace{-1mm}
+
+\noindent\begin{tabular}{l}
+\hline
+{\bf Algorithm~{\IF}. Iterated filtering}\rule[-1.5mm]{0mm}{6mm}\\
+\hline
+{\bf input:}\rule[-1.5mm]{0mm}{6mm} \\
+Simulator for $f_{X_0}(x_0\giventh\theta)$ \\
+Simulator for $f_{X_n|X_{n-1}}(x_n\given x_{n-1}\giventh \theta)$, $n$ in $1{\mycolon}N$ \\
+Evaluator for $f_{Y_n|X_n}(y_n\given x_n\giventh\theta)$, $n$ in $1{\mycolon}N$ \\
+Data, $y^*_{1:N}$ \\
+Number of iterations, $M$ \\
+Number of particles, $J$ \\
+Initial parameter swarm, $\{\Theta^0_j, \mbox{ $j$ in $1\mycolon J$}\}$ \\
+Perturbation density, $h_n(\theta\given\varphi\giventh\sigma)$, $n$ in $1{\mycolon}N$\\
+Perturbation sequence, $\sigma_{1:M}$ \\
+{\bf output:}\rule[-1.5mm]{0mm}{6mm} 
+Final parameter swarm, $\{\Theta^M_j, \mbox{ $j$ in $1\mycolon J$}\}$ \\
+For $m$ in $1\mycolon M$\rule[0mm]{0mm}{5mm}\\
+\asp     $\Theta^{F,m}_{0,j}\sim h_0(\theta\given\Theta^{m-1}_{j}\giventh \sigma_m)$ for $j$ in $1\mycolon J$\mystretch\\
+\asp     $X_{0,j}^{F,m}\sim f_{X_0}(x_0 ; \Theta^{F,m}_{0,j})$ for $j$ in $1\mycolon J$\mystretch\\
+\asp For $n$ in $1\mycolon N$\\
+\asp\asp$\Theta^{P,m}_{n,j}\sim h_n(\theta\given\Theta^{F,m}_{n-1,j},\sigma_m)$ for $j$ in $1\mycolon J$\mystretch\\
+\asp\asp   $X_{n,j}^{P,m}\sim f_{X_n|X_{n-1}}(x_n \given X^{F,m}_{n-1,j}; \Theta^{P,m}_j)$ for $j$ in $1\mycolon J$  \mystretch\\
+\asp\asp  $w_{n,j}^m = f_{Y_n|X_n}(y^*_n\given X_{n,j}^{P,m} ; \Theta^{P,m}_{n,j})$ for $j$ in $1\mycolon J$  \mystretch\\
+\asp\asp  Draw $k_{1:J}$ with $\prob(k_j=i)=  w_{n,i}^m\Big/\sum_{u=1}^J w_{n,u}^m$  \\
+\asp\asp  $\Theta^{F,m}_{n,j}=\Theta^{P,m}_{n,k_j}$ and $X^{F,m}_{n,j}=X^{P,m}_{n,k_j}$ for $j$ in $1\mycolon J$   \mystretch\\
+\asp End For\\
+\asp   Set $\Theta^{m}_{j}=\Theta^{F,m}_{N,j}$ for $j$ in $1\mycolon J$\\
+End For\\
+\hline
+\end{tabular}
+
+
+\vspace{2mm}
+
+\noindent
+a plug-and-play Monte Carlo approach to obtaining $\hat\theta$. 
+A simplification of {\IF} arises when $N=1$, in which case iterated filtering is called iterated importance sampling \cite{ionides11} (SI, {\mySection}{\secIIS}).
+Algorithms similar to {\IF} with a single iteration ($M=1$) have been proposed  in the context of Bayesian inference \cite{kitagawa98,janeliu01} (SI, {\mySection}{\SupSecLW}).
+When $M=1$ and $h_n(\theta\given\varphi\giventh\sigma)$ degenerates to a point mass at $\varphi$, the IF2  algorithm becomes a standard particle filter \cite{arulampalam02,doucet01}.
+In the IF2 algorithm description, $\Theta^{F,m}_{n,j}$ and $X^{F,m}_{n,j}$ are the $j$th particles at time $n$ in the Monte Carlo representation of the $m$th iteration of a filtering recursion.
+The filtering recursion is coupled with a prediction recursion, represented by $\Theta^{P,m}_{n,j}$ and $X^{P,m}_{n,j}$.
+The resampling indices $k_{1:J}$ in IF2 are taken to be a multinomial draw for our theoretical analysis, but systematic resampling is preferable in practice \cite{arulampalam02}.
+A natural choice of $h_n(\theta\given\varphi\giventh\sigma)$ is a multivariate normal density with mean $\varphi$ and variance $\sigma^2\Sigma$ for some covariance matrix $\Sigma$, but in general $h_n$ could be any conditional density parameterized by $\sigma$.
+Combining the perturbations over all the time points, we define
+\begin{equation} \nonumber
+h(\theta_{0:N}\given\varphi\giventh\sigma)=h_0(\theta_0\given\varphi\giventh\sigma)\prod_{n=1}^Nh_n(\theta_n\given\theta_{n-1}\giventh\sigma).
+\end{equation}
+We define an extended likelihood function on $\Thetaspace^{N+1}$ by
+\begin{eqnarray}\nonumber
+\breve\lik(\theta_{0:N})&=&\!\! \int\!\!\dots\!\!\int  dx_0\dots dx_N \Big\{ f_{X_0}(x_o\giventh\theta_0) \times
+\\ \nonumber
+&&\hspace{-1.8cm}\prod_{n=1}^N f_{X_n|X_{n-1}}(x_n\given x_{n-1}\giventh\theta_{n})f_{Y_n|X_n}(y^*_n\given x_{n}\giventh\theta_{n})\Big\}.
+\end{eqnarray}
+Each iteration of  {\IF} is a Monte~Carlo approximation to a map
+\begin{equation}\label{recursion:if} %\nonumber
+T_\sigma f(\theta_N)=
+\frac{\int \breve\lik(\theta_{0:N})h(\theta_{0:N}|\varphi\giventh\sigma)f(\varphi)\,d\varphi \, d\theta_{0:N-1}}{\int \breve\lik(\theta_{0:N})h(\theta_{0:N}|\varphi\giventh\sigma)f(\varphi)\,d\varphi \, d\theta_{0:N}},
+\end{equation}
+with $f$ and $T_\sigma f$ approximating the initial and final density of the parameter swarm.
+For our theoretical analysis, we consider the case when the standard deviation of the parameter perturbations is held fixed at $\sigma_m=\sigma>0$ for $m=1,\dots,M$. 
+In this case,   {\IF} is a Monte Carlo approximation to $T_\sigma^M\fzero(\theta)$.
+We call the fixed $\sigma$ version of  {\IF} {\it homogeneous} iterated filtering since each iteration implements the same map.
+For any fixed $\sigma$, one cannot expect a procedure such as   {\IF} to converge to a point mass at the MLE.
+However, for fixed but small $\sigma$, we show that  {\IF} does approximately maximize the likelihood, with an error that shrinks to zero in a limit as $\sigma\to 0$ and $M\to\infty$.
+An immediate motivation for studying the homogeneous case is simplicity; it turns out that even with this simplifying assumption the theoretical analysis is not entirely straightforward.
+Moreover, the homogeneous analysis gives at least as much insight as an asymptotic analysis into the practical properties of {\IF}, when $\sigma_m$ decreases down to some positive level $\sigma>0$ but never completes the asymptotic limit $\sigma_m\to 0$.
+Iterated filtering algorithms have been primarily developed in the context of making progress on complex models for which successfully achieving and validating global likelihood optimization is challenging.
+In such situations, it is advisable to run multiple searches and continue each search up to the limits of available computation \cite{ingber93}. 
+If no single search can reliably locate the global maximum, a theory assuring convergence to a neighborhood of the maximum is as relevant as a theory assuring convergence to the maximum itself in a practically unattainable limit.
+
+The map $T_\sigma$ can be expressed as a composition of a parameter perturbation with a Bayes map that multiplies by the likelihood and renormalizes.
+Iteration of the Bayes map alone has a central limit theorem (CLT) \cite{lele07} which forms the theoretical basis for the data cloning methodology of \cite{lele07,lele10}.
+Repetitions of the parameter perturbation may also be expected to follow a CLT. 
+One might therefore imagine that the composition of these two operations also has a Gaussian limit. 
+This is not generally true, since the rescaling involved in the perturbation CLT prevents the Bayes map CLT from applying (SI, {\mySection}{\secConjugacy}).
+Our agenda is to seek conditions guaranteeing the following:
+\newcounter{A}
+\begin{list}{(\listA\arabic{A})}{\usecounter{A}\conditionList}
+\item\label{c0} For every fixed $\sigma>0$, $\lim_{m\to\infty}T_\sigma^mf=f_\sigma$ exists. 
+\item\label{c4} When $J$ and $M$ become large,  {\IF} numerically approximates $f_\sigma$. 
+\item\label{c1} As the noise intensity becomes small, $\lim_{\sigma\to 0}f_\sigma$ approaches a point mass at the MLE, if it exists.
+\end{list}
+Stability of filtering problems and uniform convergence of sequential Monte Carlo numerical approximations are closely related, and so \listA\ref{c0} and \listA\ref{c4} are studied together in Theorem~\ref{thm:stable:if}.
+Each iteration of  {\IF} involves standard sequential Monte~Carlo filtering techniques applied to an extended model where latent variable space is augmented to include a time-varying parameter. 
+Indeed, all $M$ iterations together can be represented as a filtering problem for this extended POMP model on $M$ replications of the data.
+The proof of Theorem~\ref{thm:stable:if} therefore leans on existing results.
+The novel issue of \listA\ref{c1} is then addressed in Theorem~\ref{prop:q:if}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\section{Convergence of IF2}\label{sec:mle:if}
+
+First, we set up some notation.
+Let $\{\breve\Theta_{0:N}^m,m=1,2,\dots\}$ be a Markov chain taking values in $\Thetaspace^{N+1}$ such that 
+$\breve\Theta_{0:N}^1$ has density  $\int h(\theta_{0:N}\given\varphi\giventh\sigma)f(\varphi)\,d\varphi$, and $\breve\Theta_{0:N}^m$ has conditional density $h(\theta_{0:N}\given\varphi_N\giventh\sigma)$ given $\breve\Theta_{0:N}^{m-1}=\varphi_{0:N}$ for $m\ge 2$.
+Suppose that $\{\breve\Theta_{0:N}^m,m\ge 1\}$ is constructed on the canonical probability space $\Omega=\{ (\theta_{0:N}^1,\theta_{0:N}^2,\dots)\}$ with $\theta_{0:N}^m=\breve\Theta_{0:N}^m(\vartheta)$ for $\vartheta=(\theta_{0:N}^1,\theta_{0:N}^2,\dots)\in\Omega$. 
+Let $\{\mathcal{F}_m\}$ be the corresponding Borel filtration.
+To consider a time-rescaled limit of $\{\breve\Theta_{0:N}^m,m=1,2,\dots\}$ as $\sigma\to 0$, let $\{W_\sigma(t),t\ge 0\}$ be a continuous-time, right-continuous, piecewise constant process defined at its points of discontinuity by $W_\sigma(k\sigma^2)=\breve\Theta^{k+1}_N$ when $k$ is a nonnegative integer.
+Let $\{\breve Z_{0:N}^m,m=1,2,\dots\}$ be the filtered process defined such that, for any event $E\in\mathcal{F}_M$,
+ \begin{equation} \label{eq:prop:filt}
+\prob_{\breve Z}(E)= \frac{\E^{}_{\breve\Theta}[\breve\lik_{1:M}I^{}_{E}]}{\E^{}_{\breve\Theta}[\breve\lik_{1:M}]}, 
+\end{equation}
+where $I_E$ is the indicator function for event $E$ and
+\begin{equation} \nonumber
+\breve\lik_{1:M}(\vartheta)=\prod_{m=1}^{M} \breve\lik(\theta_{0:N}^m).
+\end{equation}
+In \eqref{eq:prop:filt}, $\prob_{\breve Z}(E)$ denotes probability under the law of $\{\breve Z_{n}^m\}$, and $\E_{\breve\Theta}$ denotes expectation under the law of $\{\breve\Theta_{n}^m\}$.
+The process $\{\breve Z_{n}^m\}$ is constructed so that $\breve Z_{N}^m$ has density $T^m \fzero$.
+We make the following assumptions.
+
+\newcounter{B}
+\begin{list}{(\listB\arabic{B})}{\usecounter{B}\conditionList}
+\item \label{B1} $\{W_\sigma(t),0\le t\le 1\}$ converges weakly as $\sigma\to 0$ to a diffusion $\{W(t),0\le t\le 1\}$, in the space of right-continuous functions with left limits equipped with the uniform convergence topology.
+For any open set $A\subset \Theta$ with positive Lebesgue measure and $\epsilon>0$, there is a $\delta(A,\epsilon)>0$ such that $\prob\big[W(t)\in A \mbox{ for all } \epsilon\le t\le 1\given W(0)\big]>\delta$.
+
+\item\label{B1b} For some $t_0(\sigma)$ and $\sigma_0>0$, $W_\sigma(t)$ has a positive density on $\Thetaspace$, uniformly over the distribution of $W(0)$ for all $t>t_0$ and $\sigma<\sigma_0$.
+
+\item\label{B3} $\lik(\theta)$ is continuous in a neighborhood $\{\theta:\lik(\theta)>\leveli\}$ for some $\leveli<\sup_\varphi\lik(\varphi)$.
+\item\label{B4} There is an $\epsilon>0$ with $\epsilon^{-1}>f_{Y_n|X_n}(y^*_n\given x_n,\theta)>\epsilon$ for all $1\le n\le N$, $x_n\in\Xspace$ and $\theta\in\Thetaspace$.
+\item\label{B5} There is a $\Ci$ such that $h_n(\theta\given\varphi\giventh\sigma)=0$ when $|\theta-\varphi|>\Ci\sigma$, for all $\sigma$.
+\item\label{B6} There is a $\Cii$ such that $\sup_{1\le n \le N}|\theta_n-\theta_{n-1}|<\Ci\,\sigma$ implies
+$|\breve\lik(\theta_{0:N})-\lik(\theta_N)| < \Cii\, \sigma$, for all $\sigma$ and all $n$. 
+\end{list}
+Conditions B1 and B2 hold when $h_n(\theta\given\varphi\giventh\sigma)$ corresponds to a reflected Gaussian random walk and $\{W(t)\}$ is a reflected Brownian motion (SI, Sec.~\SupSecBiBii).
+More generally, $h_n(\theta\given\varphi\giventh\sigma)$ is a location-scale family with mean $\varphi$ away from a boundary, then $\{W(t)\}$ will behave like Brownian motion in the interior of $\Thetaspace$.
+\listB\ref{B4} follows if $\Xspace$ is compact and $f_{Y_n|X_n}(y^*_n\given x_n\giventh\theta)$ is positive and continuous as a function of $\theta$ and $x_n$.
+\listB\ref{B5} can be guaranteed by construction.
+\listB\ref{B3} and \listB\ref{B6} are undemanding regularity conditions on the likelihood and extended likelihood. A formalization of \listA\ref{c0} and \listA\ref{c4} can now be stated as follows.
+
+
+%%%%%%%%%%%%%%% THEOREM: FILTER STABILITY AND SMC CONVERGENCE %%%%%%%%%%%%%%%%%%%     
+
+\begin{theorem}\label{thm:stable:if}
+Let $T_\sigma$ be the map of \eqref{recursion:if} and 
+Suppose \listB\ref{B1b} and \listB\ref{B4}.
+There is a unique probability density $f_\sigma$ such that for any probability density $f$ on $\Thetaspace$,
+\begin{equation}\label{eq:thm:stable:1}
+\lim_{m\to\infty} \|T_\sigma^m f - f_\sigma\|_1=0,
+\end{equation}
+where $\|f\|_1$ is the $L^1$ norm of $f$.  
+Let $\{\Theta_j^M,\;j=1,\ldots,J\}$ be the output of IF2, with $\sigma_m=\sigma>0$.
+There is a finite constant $\Ca>0$ such that, for any function $\phi:\Thetaspace\to\R$ and all $M$,
+\begin{equation} %\nonumber 
+\label{eq:thm:stable:2}
+\E\bigg\{ \Big| \frac{1}{J}\sum_{j=1}^J\phi(\Theta^M_j) -\! \int \! \phi(\theta)f_\sigma(\theta)\, d\theta \Big| \bigg\}
+\le \frac{\Ca \, \sup_\theta|\phi(\theta)|}{\sqrt{J}}.
+\end{equation}
+\end{theorem}
+\noindent{\it Proof.}
+\listB\ref{B1b} and \listB\ref{B4} imply that $T_\sigma^k$ is mixing, in the sense of \cite{legland04}, for all sufficiently large $k$. 
+The results of \cite{legland04} are based on the contractive properties of mixing maps in the Hilbert projective metric. 
+Although \cite{legland04} stated their results in the case where $T$ itself is mixing, the required geometric contraction in the Hilbert metric holds as long as $T^k$ is mixing for all $K\le k\le 2K-1$ for some $K\ge 1$ \cite[Theorem~2.5.1]{eveson95}.
+Corollary~4.2 of \cite{legland04} implies \eqref{eq:thm:stable:1}, noting the equivalence of the Hilbert projective metric and the total variation norm shown in their Lemma~3.4.
+Then, Corollary~5.12 of \cite{legland04} implies \eqref{eq:thm:stable:2}, completing the proof of Theorem~\ref{thm:stable:if}. 
+A longer version of this proof is given in the supplement ({\mySection}{\SupSecThmDetails}).
+\hfill$\Box$
+
+Results similar to Theorem~\ref{thm:stable:if} can be obtained using Dobrushin contraction techniques \cite{delmoral04saa}.
+Results appropriate for non-compact spaces can be obtained using drift conditions on a potential function \cite{whiteley12}.
+Now we move on to our formalization of \listA\ref{c1}:
+
+%%%%%%%%%%%%% THEOREM: CONVERGENCE AS SIGMA -> 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}\label{prop:q:if}
+Assume \listB{1}--\listB{6}.
+For $\levelii<\sup_\varphi\lik(\varphi)$, \\
+$\lim_{\sigma\to 0} \int f_\sigma(\theta)1_{\{\lik(\theta)<\levelii\}}\, d\theta = 0$. 
+\end{theorem}
+
+\noindent{\it Proof.}
+Let $\levelmax=\sup_\varphi\lik(\varphi)$ and $\levelmin=\inf_\varphi\lik(\varphi)$. 
+From \listB\ref{B4}, $\infty>\levelmax>\levelmin>0$.
+For positive constants $\epsilon_1$, $\epsilon_2$, $\eta_1$, $\eta_2$ and $\leveli<\levelmax$, define
+\begin{eqnarray}
+\nonumber %\label{eq:prop:q:if:e1}
+e_1 &=& (1-\epsilon_1)\log (\levelmax+\epsilon_2) + \epsilon_1\log (\levelii+\epsilon_2),
+\\
+\nonumber %\label{eq:prop:q:if:e2}
+e_2 &=& (1-\eta_1) \log (\leveli-\eta_2) + \eta_1\log (\levelmin-\eta_2).
+\end{eqnarray}
+We can pick $\epsilon_1$, $\epsilon_2$, $\eta_1$, $\eta_2$ and $\leveli$ so that $e_1<e_2$.
+Suppose that $\{\breve\Theta_{n}^{m}\}$ is initialized with the stationary distribution $f=f_\sigma$ identified in Theorem~\ref{thm:stable:if}.
+Now, set $\Msigma$ to be the greatest integer less than $1/\sigma^2$, and 
+let $F_1$ be the event that $\{\Theta^m_N, m=1,\dots,\Msigma\}$ spends at least a fraction of time $\epsilon_1$ in $\{\theta:\lik(\theta)<\levelii\}$. Formally,
+\begin{equation}
+\nonumber %\label{eq:if:F1}
+F_1=\Big\{\vartheta\in \Omega:\frac{1}{\Msigma}\sum_{m=1}^{\Msigma}1_{\{\lik(\theta^m_N)<\levelii\}}>\epsilon_1 \Big\}.
+\end{equation}
+We wish to show that $\prob_{\breve Z}[F_1]$ is small for $\sigma$ small.
+Let $F_2$ be the set of sample paths that spend at least a fraction of time $(1-\eta_1)$ up to time $\Msigma$ in
+$\{\theta:\lik(\theta)>\leveli\}$, i.e.,
+\begin{equation}
+\nonumber %\label{eq:if:F2}
+F_2=\Big\{\vartheta\in\Omega:\frac{1}{\Msigma}\sum_{m=1}^{\Msigma}1_{\{\lik(\theta^m_N)>\leveli\}}>(1-\eta_1) \Big\}.
+\end{equation}
+Then, we calculate
+\begin{eqnarray} \nonumber
+\hspace{-3mm} \prob_{\breve Z}[F_1]&=& \frac{\E_{\breve \Theta}\big[\breve\lik_{1:\Msigma}1_{F_1}\big]}{\E_{\breve\Theta}\big[\breve\lik_{1:\Msigma}\big]}
+\\ 
+\nonumber
+&\le & \frac{\E_{\breve\Theta}\big[\breve \lik_{1:\Msigma}1_{F_1}\big]}{\E_{\breve\Theta}\big[\breve \lik_{1:\Msigma}1_{F_2}\big]}
+\\ \label{eq:Ciii(b)}
+% &\le& \frac{\E_{\breve\Theta}\big[(\lik_{1:\Msigma}+C_2\sigma)1_{F_1}\big]}{\E_{\breve\Theta}\big[(\lik_{1:\Msigma}-C_2\sigma)1_{F_2}\big]}
+&\le& \frac{ \E_{\breve \Theta}\left[\prod_{m=1}^M \big\{ \lik(\theta^m_N)+\Cii\sigma \big\} \, 1_{F_1}\right]}
+{ \E_{\breve \Theta}\left[\prod_{m=1}^M \big\{ \lik(\theta^m_N)-\Cii\sigma \big\} \, 1_{F_2}\right]}
+\\  
+ \label{eq:Ciii(c)}
+&\le& \frac{\E_{\breve \Theta} \big[\exp\{\Msigma e_1\}1_{F_1}\big]}{\E_{\breve \Theta}\big[ \exp\{\Msigma e_2\}1_{F_2}\big]} 
+\\
+&=& \exp\big\{(e_1-e_2)\Msigma\big\} \frac{\prob_{\breve\Theta}[F_1]}{\prob_{\breve\Theta}[F_2]}. 
+\label{eq:999}
+\end{eqnarray}
+We used B\ref{B5} and B\ref{B6} to arrive at \eqref{eq:Ciii(b)}, then to get to \eqref{eq:Ciii(c)} we have  taken  $\sigma$ small enough that $\Cii\sigma<\epsilon_2$ and $\Cii\sigma<\eta_2$.
+From \listB\ref{B3}, $\{\theta:\lik(\theta)>\lambda_1\}$ is an open set, and \listB\ref{B1} therefore ensures each of the probabilities $\prob_{\Theta_{1:\Msigma}}[F_1]$ and $\prob_{\Theta_{1:\Msigma}}[F_2]$ in \eqref{eq:999} tends to a positive limit as $\sigma\to 0$ given by the probability under the limiting distribution $\{W(t)\}$  (SI, Lemma~S1).
+The term $\exp\{(e_1-e_2)\Msigma\}$ tends to zero as $\sigma\to 0$ since, by construction, $M\to\infty$ and $e_1<e_2$.
+Setting $L=\{\theta:\lik(\theta)\le \levelii\}$, and noting that $\{\breve Z^m_N, m=1,2,\dots\}$ is constructed to have stationary marginal density $f_\sigma$, we have
+\begin{eqnarray} \nonumber
+\int_L f_\sigma(\theta)\, d\theta 
+&=&\frac{1}{M}\sum_{m=1}^M\Big\{\prob_{\breve Z} \big[\breve Z^m_N\in L \given F_1\big]\,\prob_{\breve Z}[F_1] + 
+\\ \nonumber
+&& \hspace{15mm} \prob_{\breve Z} \big[\breve Z^m_N\in L \given F^c_1\big]\,\prob_{\breve Z}[F^c_1]\Big\},
+\\ \nonumber
+&\le& \epsilon_1 + \prob_{\breve Z}[F_1],
+\end{eqnarray}
+which can be made arbitrarily small by picking $\epsilon_1$ small and $\sigma$ small, completing the proof. \hfill$\Box$
+
+
+%%%%%%%%%%%%%%%%% TOY %%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\section{Demonstration of IF2 with nonconvex superlevel sets} \label{sec:toy}
+Theorems 1 and 2 do not involve any Taylor series expansions, which are basic in the justification of IF1 \cite{ionides11}.
+This might suggest that IF2 can be effective on likelihood functions without good low-order polynomial approximations.
+In practice, this can be seen by comparing IF2 with IF1 on a simple two-dimensional toy example ($\Thetadim=\Xdim=\Ydim=2$) in which the superlevel sets $\{\theta: \lik(\theta)>\level\}$ are connected but not convex.
+We also compare with particle Markov chain Monte~Carlo (PMCMC) implemented as the PMMH algorithm of \cite{andrieu10}. 
+The justification of PMCMC also does not depend on Taylor series expansions, but PMCMC is computationally expensive compared to iterated filtering \cite{bhadra10}.
+Our toy example has a constant and non-random latent process,
+$X_n=\big(\exp\{\theta_1\},\theta_2\exp\{\theta_1\}\big)$ 
+for $n=1,\dots,N$. 
+The known measurement model is
+\[
+f_{Y_n|X_n}(y\given x\giventh\theta) \sim \normal\left[ x, \left(\begin{array}{cc} 100 & 0 \\ 0 & 1 \end{array}\right)\right],
+\]
+This example was designed so that a nonlinear combination of the parameters is well identified whereas each parameter is marginally weakly identified.   
+For the truth, we took $\theta=(1,1)$. We supposed that $\theta_1$ is suspected to fall in the interval $[-2,2]$ and $\theta_2$ is expected in $[0,10]$. 
+We used a uniform distribution on this rectangle to specify the prior for PMCMC and to generate random starting points for all the algorithms.
+We set $N=100$ observations, and we used a Monte Carlo sample size of $J=100$ particles. 
+For IF1 and IF2, we employed $M=100$ filtering iterations, with initial random walk standard deviation 0.1 decreasing geometrically down to 0.01. 
+For PMCMC, we used $10^4$ filtering iterations with random walk standard deviation 0.1, awarding PMCMC 100 times the computational resources offered to IF1 and IF2.
+Independent, normally distributed parameter perturbations were used for IF1, IF2 and PMCMC.
+The random walk standard deviation for PMCMC is not immediately comparable to that for IF1 and IF2, since the latter add the noise at each observation time whereas the former adds it only between filtering iterations. 
+All three methods could have their parameters fine-tuned, or be modified in other ways to take advantage of the structure of this particular problem.
+However, this example demonstrates a feature that makes tuning algorithms tricky: the nonlinear ridge along contours of constant $\theta_2\exp(\theta_1)$ becomes increasingly steep as $\theta_1$ increases, so no single global estimate of the second derivative of the likelihood is appropriate.
+Reparameterization can linearize the ridge in this toy example, but in practical problems with much larger parameter spaces one does not always know how to find appropriate reparameterizations, and a single reparameterization may not be appropriate throughout the parameter space. 
+
+
+{\myFigure}\ref{fig:toy} compares the  the performance of the three methods, based on 30 Monte Carlo replications. 
+These replications investigate the likelihood and posterior distribution for a single draw from our toy model, since our interest is in the Monte~Carlo behavior for a given dataset.
+For this simulated dataset, the MLE is $\theta=(1.20,0.81)$, shown as a green triangle in {\myFigure}\ref{fig:toy}, panels~A, B and~C. 
+In this toy example, the posterior distribution can also be computed directly by numerical integration.
+In {\myFigure}\ref{fig:toy}A, we see that IF1 performs poorly on this challenge. 
+None of the 30 replications approach the MLE. 
+The linear combination of perturbed parameters involved in the IF1 update formula can all too easily knock the search off a nonlinear ridge. 
+{\myFigure}\ref{fig:toy}B shows that IF2 performs well on this test, with almost all the Monte~Carlo replications clustering in the region of highest likelihood.
+{\myFigure}\ref{fig:toy}C shows the end points of the PMCMC replications, which are nicely spread around the region of high posterior probability. 
+However, {\myFigure}\ref{fig:toy}D shows that mixing of the PMCMC Markov chains was problematic.
+
+%To further investigate the capabilities of IF2, we also compared it to IF1 on a complex model arising from the study of epidemiological dynamics. 
+
+%%%%%%%%%%%%%%%%%%% CHOLERA %%%%%%%%%%%%%%%%%%%%%5
+
+\section{Application to a cholera model}\label{sec:cholera}
+Highly nonlinear, partially observed, stochastic dynamic systems are ubiquitous in the study of biological processes.
+The physical scale of the systems vary widely from molecular biology \cite{wilkinson12} to population ecology and epidemiology \cite{keeling09}, but POMP models arise naturally at all scales.
+In the face of biological complexity, it is necessary to determine which scientific aspects of a system are critical for the investigation.
+Giving consideration to a range of potential mechanisms, and their interactions, may require working with highly parameterized models.
+Limitations in the available data may result in some combinations of parameters being weakly identifiable.
+Despite this, other combinations of parameters may be adequately identifiable and give rise to some interesting statistical inferences.
+To demonstrate the capabilities of IF2 for such analyses, we fit a model for cholera epidemics in historic Bengal developed by King et al \cite{king08}.
+The model, the data, and the implementations of IF1 and IF2 used below are all contained in the open source R package {\texttt{pomp}} \cite{pomp}.
+The code generating the results in this article is provided as supplementary data.
+
+Cholera is a diarrheal disease caused by the bacterial pathogen {\it Vibrio cholerae}. 
+Without appropriate medical treatment, severe infections can rapidly result in death by dehydration.
+Many questions regarding cholera transmission remain unresolved:
+what is the epidemiological role of free-living environmental vibrio?
+how important are mild and asymptomatic infections for the transmission dynamics?
+how long does protective immunity last following infection?
+The model we consider splits up the study population of $P(t)$ individuals into those who are susceptible, $S(t)$, infected, $I(t)$, and recovered, $R(t)$. 
+$P(t)$ is assumed known from census data.
+To allow flexibility in representing immunity, $R(t)$ is subdivided into $R_1(t), \dots, R_k(t)$, where we take $k=3$.
+Cumulative cholera mortality in each month is tracked with a variable $M(t)$ that resets to zero at the beginning of each observation period.
+The state process, $\{X(t)=(S(t),I(t),R_1(t),\dots,R_k(t), M(t)),t\ge t_0\}$ follows a stochastic differential equation,
+\begin{equation} \nonumber
+\begin{array}{rcl}dS &=& \rule[-3mm]{0mm}{5mm} \big\{ k \epsilon R_k + \delta(S-H) - \lambda(t)S \big\} dt
+dP - (\sigma SI/P)\, dB,
+\\
+dI &=& \rule[-3mm]{0mm}{5mm} \big\{\lambda(t)S - (m+\delta+\gamma)I\big\} dt + (\sigma SI/P)\, dB,
+\\
+dR_1 &=& 
+\big\{\gamma I - ( k\epsilon + \delta) R_1 \big\} dt,
+\vspace{-1mm}
+\\
+&\vspace{0mm}\vdots&
+\\
+dR_k &=& \big\{k\epsilon R_{k-1} - (k\epsilon + \delta)R_k\big\} dt,
+\end{array}
+\end{equation}
+ driven by a Brownian motion $\{B(t)\}$. Nonlinearity arises through the force of infection, $\lambda(t)$, specified as
+\begin{eqnarray}\nonumber
+\lambda(t)&=&  \bar\beta \exp\Big\{\beta_{\mathrm{trend}} (t-t_0) + \textstyle \sum_{j=1}^{N_s} \beta_js_j(t)\Big\} (I/P) +
+\\
+&& \hspace{15mm}  \nonumber
+\bar\omega\exp\Big\{\textstyle \sum_{j=1}^{N_s} \omega_js_j(t)\Big\}, 
+%\label{eq:lambda}
+\end{eqnarray}
+where $\{s_j(t),j=1,\dots,N_s\}$ is a periodic cubic B-spline basis;
+$\{\beta_j,j=1,\dots,N_s\}$ model seasonality of transmission; $\{\omega_j,j=1,\dots,N_s\}$ model seasonality of the environmental reservoir; $\bar\omega$ and $\bar\beta$ are scaling constants set to $\bar\omega=\bar\beta=1 \mathrm{yr}^{-1}$, and we set $N_s=6$.
+The data, consisting of monthly counts of cholera mortality, are modeled via $Y_n\sim \mathrm{Normal}(M_n,\tau^2 M_n^2)$ for $M_n=\int_{t_{n-1}}^{t_n} \! m\,I(s)\, ds$.
+
+
+
+The inference goal used to assess IF1 and IF2 is to find high-likelihood parameter values starting from randomly drawn starting values in a large hyper-rectangle (SI, Table~S-1). 
+A single search cannot necessarily be expected to reliably obtain the maximum of the likelihood, due to multi-modality, weak identifiability, and considerable Monte~Carlo error in evaluating the likelihood.
+Multiple starts and restarts may be needed both for effective optimization and for assessing the evidence to validate effective optimization.
+However, optimization progress made on an initial search provides a concrete criterion to compare methodologies.
+Since IF1 and IF2 have essentially the same computational cost, for a given Monte~Carlo sample size and number of iterations, shared fixed values of these algorithmic parameters provide an appropriate comparison.
+ 
+
+
+{\myFigure}\ref{fig:chol-compare} compares results for 100 searches with $J=10^4$ particles and $M=100$ iterations of the search. 
+An initial Gaussian random walk standard deviation of $0.1$ geometrically decreasing down to a final value of $0.01$ was used for all parameters except $S_0$, $I_0$, $R_{1,0}$, $R_{2,0}$ and  $R_{3,0}$.
+For those initial value parameters, the random walk standard deviation decreased geometrically from $0.2$ down to $0.02$, but these perturbations were applied only at time $t_0$. 
+Since some starting points may lead both IF1 and IF2 to fail to approach the global maximum, {\myFigure}\ref{fig:chol-compare} plots the likelihoods of parameter vectors output by IF1 and IF2 for each starting point.
+{\myFigure}\ref{fig:chol-compare} shows that, on this problem, IF2 is considerably more effective than IF1. 
+This maximization was considered challenging for IF1, and \cite{king08} required multiple restarts and refinements of the optimization procedure. 
+Our implementation of PMCMC failed to converge on this inference problem (SI, {\mySection}{\secPMCMC}), and we are not aware of any previous successful PMCMC solution for a comparable situation. 
+For IF2, however, this situation appears routine.
+Some Monte~Carlo replication is needed because  searches occasionally fail to approach the global optimum, but replication is always appropriate for Monte Carlo optimization procedures.
+
+
+A fair numerical comparison of methods is difficult. 
+For example, it could hypothetically be the case that the algorithmic settings used here favor IF2. 
+However, the settings used are those that were developed for IF1 by \cite{king08} and reflect considerable amounts of trial and error with that method.
+Likelihood-based inference for general partially observed nonlinear stochastic dynamic models was considered computationally unfeasible prior to the introduction of IF1, even in situations considerably simpler than the one investigated in this section \cite{wood10}.
+We have shown that IF2 offers a substantial improvement on IF1, by demonstrating that it functions effectively on a problem at the limit of the capabilities of IF1.
+
+\section{Discussion}\label{sec:discussion}
+
+Theorems~\ref{thm:stable:if} and~\ref{prop:q:if} assert convergence without giving insights into the rate of convergence. 
+In the particular case of a quadratic log likelihood function and additive Gaussian parameter perturbations, $\lim_{M\to\infty}T_\sigma^M f$ is Gaussian, and explicit calculations are available (SI, {\mySection}{\secGaussianIIS}). 
+If $\log\lik(\mytheta)$  is close to quadratic and the parameter perturbation is close to additive Gaussian noise, then $\lim_{M\to\infty}T^M_\sigma f$ exists and is close to the limit for the approximating Gaussian system (SI, {\mySection}{\secGaussianIIS}).
+These Gaussian and near-Gaussian situations also demonstrate that the compactness conditions for Theorem~\ref{prop:q:if} are not always necessary.
+In the case $N=1$, IF2 applies to the more general class of latent variable models.
+The latent variable model, extended to include a parameter vector that varies over iterations, nevertheless has the formal structure of a POMP in the context of the IF2 algorithm.
+Some simplifications arise when $N=1$ (SI, Secs.~\secIIS, {\secGaussianIIS} and \secConjugacy) but the proofs of Theorems 1 and 2 do not greatly change.
+
+A variation on iterated filtering, making white noise perturbations to the parameter rather than random walk perturbations, has favorable asymptotic properties \cite{doucet13}. 
+However, practical algorithms based on this theoretical insight have not yet been published.
+Our experience suggests that white noise perturbations can be effective in a neighborhood of the MLE, but fail to match the performance of IF2 for global optimization problems in complex models.
+
+The main theoretical innovation of this paper is Theorem~\ref{prop:q:if}, which does not depend on the specific sequential Monte Carlo filter used in  {\IF}. One could, for example, modify  {\IF} to use an ensemble Kalman filter \cite{shaman12,yang14} or an unscented Kalman filter \cite{julier04}. 
+Or, one could take advantage of variations of sequential Monte~Carlo that may improve the numerical performance \cite{cappe07}.
+However, basic sequential Monte Carlo is a general and widely used nonlinear filtering technique that provides a simple yet theoretically supported foundation for the {\IF} algorithm. 
+The numerical stability of sequential Monte Carlo for the extended POMP model constructed by {\IF} is comparable, in our cholera example, to the model with fixed parameters (SI, {\mySection}~\SupSecESS). 
+
+
+\vspace{3mm}
+
+\noindent{\normalsize ACKNOWLEDGMENTS}. Funding was provided by National Science Foundation grants DMS-1308919 and DMS-1106695, National Institutes of Health grants 1-R01-AI101155, 1-U54-GM111274 and 1-U01-GM110712,
+ and the RAPIDD program of DHS and NIH-FIC.
+We acknowledge constructive comments by two anonymous referees, the editor, and Joon Ha Park.
+
+\bibliography{if2}
+
+\end{article}
+
+
+
+\begin{figure}
+\begin{center}
+%\vspace{-0.5cm}
+%% \includegraphics[width=8.5cm]{toy/plot3/fig-toy}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+\includegraphics[width=3.35in]{figure/fig-toy-1} \hfill{}
+
+
+
+\end{knitrout}
+\end{center}
+\vspace{-0.25cm}
+\caption{Results for the simulation study of the toy example. A. IF1 point estimates from 30 replications (circles) and the MLE (green triangle). The region of parameter space with likelihood within 3 log units of the maximum (white), with 10 log units (red), within 100 log units (orange) and lower (yellow). B. IF2 point estimates from 30 replications (circles) with the same algorithmic settings as IF1. C. Final parameter value of 30 PMCMC chains (circles). D. kernel density estimates of the posterior for $\theta_1$ for the first 8 of these 30 PMCMC chains (solid lines), with the true posterior distribution (dotted black line).}\label{fig:toy} 
+\end{figure}
+
+
+
+
+
+
+\begin{figure}
+\begin{center}
+%\vspace{-0.2cm}
+%%\includegraphics[width=7.5cm]{cholera/a2/cholera-compare}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+\includegraphics[width=3.35in]{figure/cholera-compare-1} \hfill{}
+
+
+
+\end{knitrout}
+\end{center}
+%\vspace{-0.5cm}
+\caption{Comparison of IF1 and IF2 on the cholera model. Points are the log likelihood of the parameter vector output by IF1 and IF2, both started at a uniform draw from a large hyper-rectangle (SI, Table~S-1). Likelihoods were evaluated as the median of 10 particle filter replications (i.e.,  {\IF} applied with $M=1$ and $\sigma_1=0$) each with $J=2\times 10^4$ particles.
+ 17 poorly performing searches are off the scale of this plot (15 due to the IF1 estimate, 2 due to the IF2 estimate). Dotted lines show the maximum log likelihood reported by \cite{king08}.}
+\label{fig:chol-compare}
+\end{figure}
+
+
+\end{document}
+
+
+
