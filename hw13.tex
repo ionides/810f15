@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,url,verbatim}\setlength{\parskip}{3mm}\setlength{\parindent}{0mm}
+\begin{document}
+
+\begin{center}\bf
+Homework 13. Due by 5pm on Wednesday 12/9.
+
+Internet repositories for collaboration and open-source research: git and github
+
+\end{center}
+
+
+As discussed in class, git is currently the dominant tool for managing, developing and sharing code within the computational sciences and industry. Github is the largest git-based internet repository, but others (such as bitbucket) also use git, and it can be useful to use git to build a local repository on your own computer. 
+
+Our goals are (i) learn some ways to think about what a git repository is and how it works; (ii) practice going through the process of downloading a github repository, editing it, and uploading the changes.
+
+
+Reading: This homework is based on Karl Broman's practical and minimal git/github tutorial (\url{http://kbroman.org/github_tutorial/}). A deeper, more technical tutorial is \url{https://www.atlassian.com/git/tutorials/}.
+
+Git was developed for Unix-like systems (Linux and Mac). According to \url{https://en.wikipedia.org/wiki/Git_%28software%29},
+
+``The Microsoft Windows `port' of Git is primarily a Linux emulation framework that hosts the Linux version. [...] Currently there is no native port of Git for Windows.''
+
+If your laptop runs Windows, your time is probably better spent figuring out how to do this assignment on a department Linux machine or a friend's Mac.  That is, unless you really want to restrict yourself to Windows.
+
+\begin{enumerate}
+\item Get an account on github.
+\item If you are on a Mac or Linux machine, git will likely be installed already. Otherwise, you can download and install it from \url{http://git-scm.com/downloads}.
+\item Set up your local git installation with your user name and email. Open a terminal and type:
+
+\begin{verbatim}
+$ git config --global user.name "Your name here"
+$ git config --global user.email "your_email@example.com"
+\end{verbatim}
+(Don’t type the \$; that just indicates that you’re doing this at the command line.)
+
+\item Optional but recommended: set up secure password-less SSH communication to github, following the instructions at
+\url{https://help.github.com/articles/generating-ssh-keys/}. If you run into difficulties, it may help to look at
+\url{http://www.biostat.jhsph.edu/bit/nopassword.html}.
+
+\end{enumerate}
+
+{\bf Basic git concepts}
+
+\begin{itemize}
+\item {\bf repository}. A representation of the current state of a collection of files, and its entire history of modifications. 
+
+\item {\bf commit}. A commit is a change to one or many of the files in repository. The repository therefore consists of a directed graph of all previous commits.
+
+\item {\bf branch}. Multiple versions of the collection of files can exist simultaneously in the repository. 
+These versions are called branches. 
+Branches may represent new functionality, or a bug fix, or different versions of the code with slightly different goals. 
+\begin{itemize}
+\item Branches have names. A special name called {\bf master} is reserved for the main development branch.
+
+\item Branches can be {\bf created}, {\bf deleted} or {\bf merged}. 
+
+\item Each new commit is assigned to a branch.
+\end{itemize}
+\item We now have the pieces in place to visualize the graph of a git repository
+\end{itemize}
+
+\end{document}
