@@ -96,7 +96,7 @@ img {
 </ul>
 <p>“The Microsoft Windows ‘port’ of Git is primarily a Linux emulation framework that hosts the Linux version. […] Currently there is no native port of Git for Windows.”</p>
 <ul>
-<li>If your laptop runs Windows, your time is probably better spent figuring out how to do this assignment on a department Linux machine or a friend’s Mac. That is, unless you really want to restrict yourself to Windows.</li>
+<li>If your laptop runs Windows, your time is probably better spent figuring out how to do this assignment on a Linux or Mac machine belonging to the department or a friend. That is, unless you really want to restrict yourself to Windows.</li>
 </ul>
 <hr />
 <hr />
@@ -168,17 +168,24 @@ Already up-to-date.</code></pre>
 <h3>Forking a project and making a pull request</h3>
 <p><strong>Forking</strong> is making your own github copy of a repository. A <strong>pull request</strong> is a way to ask the owner of the repository to pull your changes back into their version. The following steps guide you through a test example.</p>
 <ol style="list-style-type: decimal">
-<li><p>Go to <code>ioinides/810f15</code> on github.</p></li>
+<li><p>Go to <code>ionides/810f15</code> on github, for example by searching for <code>810f15</code>.</p></li>
 <li><p>Click <code>fork</code> at the top right-hand corner, and follow instructions to add a forked copy to your own github account. It should now show up in your account as <code>my_username/810f15</code>.</p></li>
 <li><p>Clone a local copy of the forked repository to your machine, e.g.,</p></li>
 </ol>
 <pre><code>git clone git@github.com:my_username/810f15</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Move to the <code>810f15</code> directory and edit the file <code>sign_here.html</code> to add your own name.</p></li>
-<li><p>Commit this change to your local version of the forked <code>810f15</code>,</p></li>
+<li><p>It can be helpful to type</p></li>
+</ol>
+<pre><code>git status</code></pre>
+<p>regularly to check on the current state of the repository.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Commit this change to your local version of the forked <code>810f15</code>,</li>
 </ol>
 <pre><code>git add sign_here.html
 git commit -m &quot;sign up for my_name&quot;</code></pre>
+<p>and see how the <code>git status</code> has changed. Another useful command for checking on the recent action in the repository is</p>
+<pre><code>git log</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Push this change to the forked <code>810f15</code> on github:</li>
 </ol>

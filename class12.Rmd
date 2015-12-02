@@ -45,7 +45,7 @@ Please share and remix noncommercially, mentioning its origin.
 
 "The Microsoft Windows 'port' of Git is primarily a Linux emulation framework that hosts the Linux version. [...] Currently there is no native port of Git for Windows."
 
-* If your laptop runs Windows, your time is probably better spent figuring out how to do this assignment on a department Linux machine or a friend's Mac.  That is, unless you really want to restrict yourself to Windows.
+* If your laptop runs Windows, your time is probably better spent figuring out how to do this assignment on a Linux or Mac machine belonging to the department or a friend.  That is, unless you really want to restrict yourself to Windows.
 
 --------------
 
@@ -137,7 +137,7 @@ Already up-to-date.
 
 **Forking** is making your own github copy of a repository. A **pull request** is a way to ask the owner of the repository to pull your changes back into their version. The following steps guide you through a test example.
 
-1. Go to `ioinides/810f15` on github.
+1. Go to `ionides/810f15` on github, for example by searching for `810f15`.
 
 2. Click `fork` at the top right-hand corner, and follow instructions to add a forked copy to your own github account. It should now show up in your account as `my_username/810f15`.
 
@@ -149,11 +149,26 @@ git clone git@github.com:my_username/810f15
 
 4. Move to the `810f15` directory and edit the file `sign_here.html` to add your own name.
 
+5. It can be helpful to type
+
+```
+git status
+```
+
+regularly to check on the current state of the repository.
+
+
 5. Commit this change to your local version of the forked `810f15`,
 
 ```
 git add sign_here.html
 git commit -m "sign up for my_name"
+```
+
+and see how the `git status` has changed. Another useful command for checking on the recent action in the repository is
+
+```
+git log
 ```
 
 6. Push this change to the forked `810f15` on github:
