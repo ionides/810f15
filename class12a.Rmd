@@ -1,0 +1,38 @@
+---
+title: "Stats 810 Fall 2015, class 12. <br>
+Lessons from the reproduction exercise"
+author: "Edward Ionides"
+date: "12/3/2015"
+output:
+  html_document:
+    theme: flatly
+    toc: yes
+csl: ecology.csl 
+
+---
+
+\newcommand\prob[1]{\mathbb{P}\left[{#1}\right]}
+\newcommand\E{\mathbb{E}}
+\newcommand\prob{\mathbb{P}}
+\newcommand\var{\mathrm{Var}}
+\newcommand\cov{\mathrm{Cov}}
+\newcommand{\loglik}{\ell}
+\newcommand{\R}{\mathbb{R}}
+
+------------------------------------
+
+Licensed under the Creative Commons attribution-noncommercial license, http://creativecommons.org/licenses/by-nc/3.0/.
+Please share and remix noncommercially, mentioning its origin.  
+![CC-BY_NC](cc-by-nc.png)
+
+-------------------------------------
+
+---------------------------------
+
+* Some people successfully ran the code, but many ran into problems.
+
+* Many problems arose with packages: even getting the right version of *pomp* may not be enough, because of potential interactions with R versions and other package versions.
+ 
+* And that is for a computation carried out only a year ago!
+
+* Conclusion: publishing code is helpful, but it may still take some work and adaptation to run it on your system.
