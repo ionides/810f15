@@ -1,0 +1,189 @@
+---
+title: "Stats 810 Fall 2015, class 12. <br>Internet repositories for collaboration and open-source research: git and github"
+author: "Edward Ionides"
+date: "12/3/2015"
+output:
+  html_document:
+    theme: flatly
+    toc: yes
+csl: ecology.csl 
+
+---
+
+\newcommand\prob[1]{\mathbb{P}\left[{#1}\right]}
+\newcommand\E{\mathbb{E}}
+\newcommand\prob{\mathbb{P}}
+\newcommand\var{\mathrm{Var}}
+\newcommand\cov{\mathrm{Cov}}
+\newcommand{\loglik}{\ell}
+\newcommand{\R}{\mathbb{R}}
+
+------------------------------------
+
+Licensed under the Creative Commons attribution-noncommercial license, http://creativecommons.org/licenses/by-nc/3.0/.
+Please share and remix noncommercially, mentioning its origin.  
+![CC-BY_NC](cc-by-nc.png)
+
+-------------------------------------
+
+---------------------------------
+
+## Objectives
+
+* As discussed in class, git is currently the dominant tool for managing, developing and sharing code within the computational sciences and industry. Github is the largest git-based internet repository, but others (such as bitbucket) also use git, and it can be useful to use git to build a local repository on your own computer. 
+
+* Our goals are 
+
+    i.  Learn some ways to think about what a git repository is and how it works.
+
+    ii. Practice going through the process of downloading a github repository, editing it, and uploading the changes.
+
+
+* This introduction uses material from Karl Broman's practical and minimal git/github tutorial ([kbroman.org/github_tutorial](http://kbroman.org/github_tutorial/)). A deeper, more technical tutorial is [www.atlassian.com/git/tutorials](https://www.atlassian.com/git/tutorials/).
+
+* Git was developed for Unix-like systems (Linux and Mac). According to [Wikpedia's article on git](https://en.wikipedia.org/wiki/Git_%28software%29)
+
+"The Microsoft Windows 'port' of Git is primarily a Linux emulation framework that hosts the Linux version. [...] Currently there is no native port of Git for Windows."
+
+* If your laptop runs Windows, your time is probably better spent figuring out how to do this assignment on a Linux or Mac machine belonging to the department or a friend.  That is, unless you really want to restrict yourself to Windows.
+
+--------------
+
+--------------
+
+
+## Getting started with git and github
+
+1. Get an account on github.
+
+2. If you are on a Mac or Linux machine, git will likely be installed already. Otherwise, you can download and install it from [git-scm.com/downloads](http://git-scm.com/downloads).
+
+3. Set up your local git installation with your user name and email. Open a terminal and type:
+
+```
+$ git config --global user.name "Your name here"
+$ git config --global user.email "your_email@example.com"
+```
+
+(Don’t type the \$; that just indicates that you’re doing this at the command line.)
+
+4. Optional but recommended: set up secure password-less SSH communication to github, following the [github instructions](https://help.github.com/articles/generating-ssh-keys/). 
+If you run into difficulties, it may help to look at [Roger Peng's SSH help page](http://www.biostat.jhsph.edu/bit/nopassword.html).
+
+
+------------------
+
+-----------------
+
+## Basic git concepts
+
+* **repository**. A representation of the current state of a collection of files, and its entire history of modifications. 
+
+* **commit**. A commit is a change to one or many of the files in repository. The repository therefore consists of a directed graph of all previous commits.
+
+* **branch**. Multiple versions of the collection of files can exist simultaneously in the repository. 
+These versions are called branches. 
+Branches may represent new functionality, or a bug fix, or different versions of the code with slightly different goals. 
+
+    + Branches have names. A special name called **master** is reserved for the main development branch.
+
+    + Branches can be **created**, **deleted** or **merged**. 
+
+    + Each new commit is assigned to a branch.
+
+* We now have the pieces in place to visualize the **graph** of a git repository. <small>[Picture credit: [hades.github.io](http://hades.github.io/media/git/git-history.png)]</small>
+
+<br>
+![git graph](git-history.png)
+
+* Take some time to identify the commits, branching events, and merging events on the graph.
+
+    + Note that branch names actually are names for the most recent commit on that branch, known as the **head** of the branch.
+
+-----------------
+
+----------------
+
+## An elementary task: cloning a remote repository
+
+* In a suitable directory, type
+
+```
+git clone git@github.com:ionides/810f15
+```
+
+* You now have a local copy of the Stats 810 class materials.
+
+* The local repository remembers the address of the remote repository it was cloned from.
+
+    + You can pull any changes from the remote repository to your local repository using **git pull**.
+
+```
+[ionides@feller 810f15]$ git pull
+Already up-to-date.
+```
+
+----------------
+
+---------------
+
+## A workflow to contribute to the 810f15 github repository
+
+* If you tell me your github username, I could in principle add you as a developer of the `ionides/810f15` github repository. Then you can commit changes directly.
+
+* However, here, let's practice something a bit more fancy. We will follow a standard workflow for proposing a change to someone else's github repository.
+
+### Forking a project and making a pull request
+
+**Forking** is making your own github copy of a repository. A **pull request** is a way to ask the owner of the repository to pull your changes back into their version. The following steps guide you through a test example.
+
+1. Go to `ionides/810f15` on github, for example by searching for `810f15`.
+
+2. Click `fork` at the top right-hand corner, and follow instructions to add a forked copy to your own github account. It should now show up in your account as `my_username/810f15`.
+
+3. Clone a local copy of the forked repository to your machine, e.g.,
+
+```
+git clone git@github.com:my_username/810f15
+```
+
+4. Move to the `810f15` directory and edit the file `sign_here.html` to add your own name.
+
+5. It can be helpful to type
+
+```
+git status
+```
+
+regularly to check on the current state of the repository.
+
+
+5. Commit this change to your local version of the forked `810f15`,
+
+```
+git add sign_here.html
+git commit -m "sign up for my_name"
+```
+
+and see how the `git status` has changed. Another useful command for checking on the recent action in the repository is
+
+```
+git log
+```
+
+6. Push this change to the forked `810f15` on github:
+
+```
+git push
+```
+
+7. On the github web site for the `my_username/810f15` fork, click `New pull request` and follow instructions. 
+When you have successfully placed your pull request, the owner of the forked repository (me) will be notifed. 
+I will then pull the modifications from your fork into `ionides/810f15`.
+
+
+
+
+ 
+
+

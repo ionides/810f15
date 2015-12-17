@@ -1,0 +1,185 @@
+\documentclass[portrait,11pt]{seminar}
+\usepackage{verbatim}
+\include{header810slides}
+\usepackage{url}
+\begin{document}
+\bs
+
+
+{\bf What is an R package?}
+
+A standardized way to 
+\begin{enumerate}
+\item Collect together a group of related R functions
+\item Insist on some level of documentation [help files, vignettes, demos, reference manual]
+\item Carry out some level of testing
+\item Present a front-end to the user where internal functions, that the 
+user shouldn't have to call, are invisible to the user
+\item Compile and link source code in C, C++ or Fortran
+\end{enumerate}
+
+\es
+
+\bs
+{\bf
+
+What is a computer cluster?
+}
+ 
+\vspace{2cm}
+
+{\bf
+What is cloud computing? How does it compare with cluster computing?
+Concretely, how does AWS compare to Flux?
+}
+
+\es
+\bs
+
+{ \bf Flux architecture (Google: flux umich)}
+%\url{http://arc.research.umich.edu/flux-and-other-hpc-resources/flux/flux-configuration/}}
+\begin{itemize}
+\item   
+126 compute nodes with 20 cores and 96 GB RAM
+    
+\item
+124 compute nodes with 16 cores and 64 GB RAM.
+
+492 compute nodes with 12 cores and 48 GB RAM
+\item
+Large memory: ten compute nodes with either 32 or 40 cores and 1 TB RAM.
+\end{itemize}
+
+\es
+
+\bs
+The main practical difference to working on a cluster is that jobs need to be submitted to a queue. 
+\begin{myitemize}
+\item 
+In practice, this means that you write a PBS (Portable Batch System) script which requests the required resources and runs the job when those resources become available.
+
+\item
+An example will be given as homework.
+\end{myitemize}
+
+\es
+\bs
+
+Queuing happens at two levels.
+
+\begin{myitemize}
+\item
+To submit a job, you must have access to an {\bf allocation}. The Statistics department currently has an allocation of 150 cores, to which you should all have access.
+\item If you submit a job requiring 50 cores to the Stats allocation, and 
+120 cores are currently in use, your job must wait.
+\item Jobs are also queued at a cluster-wide level, since the combined size of all allocations exceeds the number of cores in Flux. 
+Flux buys cores to target a reasonable quality of service. 
+\end{myitemize}
+
+\es
+
+
+\bs 
+
+{\bf In order to use Flux, you need }
+\begin{enumerate}
+\item A Flux login account
+\item An MToken
+\item An allocation.
+\end{enumerate}
+
+\es
+
+\bs
+\begin{myitemize}
+\item
+A {\bf Flux login account} is needed in order to login to the Flux cluster and to prepare and run jobs.
+
+\item 
+You should all have one of these from the orientation.
+
+\item
+To login to Flux, ssh to flux-login.engin.umich.edu.  You'll be asked for your MToken code (see below) and your Kerberos password.  
+
+\item
+You can connect to Flux from any wired campus network or using MWireless.  Otherwise, you'll need to use a VPN to connect, or ssh to login.itd.umich.edu first, and then ssh to flux-login from there.
+\end{myitemize}
+
+\es
+
+
+\bs
+
+\begin{itemize}
+\item
+An {\bf MToken} (or a Software Token) is required to authenticate to the cluster. When logging in, you will need to give both the passcode it displays at time of login as well as your UMICH password in order to authenticate. 
+
+\item You should have an MToken from the orientation.
+
+\url{http://www.mais.umich.edu/mtoken/}
+\end{itemize}
+\es
+\bs
+
+
+{\bf Allocation}
+
+In order to submit jobs to the Flux compute nodes, you need a Flux allocation against which this use is charged.  The Statistics department maintains a departmental allocation named {\verb|stats_flux|}, which you may use for this purpose.  Your PBS script preamble should contain the following three lines:
+
+\begin{verbatim}
+#PBS -A stats_flux
+#PBS -l qos=flux
+#PBS -q flux
+\end{verbatim}
+
+
+\es
+\bs
+
+{\bf HPC 101: High Performance Computing Workshop}
+
+\vspace{4mm}
+
+\url{http://arc-ts.umich.edu/hpc101/}
+
+Prerequisites: HPC 100 or equivalent. This course assumes familiarity with the Linux command line.
+
+
+\vspace{4mm}
+
+or Google: HPC 101 umich
+
+\vspace{4mm}
+
+The website has slides for the workshop that provide a good introduction to Flux.
+
+\es
+
+
+
+
+
+% {\verb|mdiag -a stats_flux|}
+
+
+\bs
+%\bf Do statisticians even need to be able to use powerful scientific computing environments, such as clusters?
+
+\bf Why is multi-processor computing of increasing importance to Statistics (and elsewhere)?
+
+
+\vfill
+At a smaller scale, similar ideas are emerging in neuromorphic chip design:
+\url{http://www.sciencemagazinedigital.org/sciencemagazine/10_october_2014?pg=47#pg46}
+
+\es
+
+\bs
+\bf What are the implications of cluster architecture for developing 
+statistical theory and methodology?
+
+\vfill
+
+\es
+
+\end{document}

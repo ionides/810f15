@@ -1,0 +1,11 @@
+Files for Stats 810 HW12
+
+Makefile: To use the make program (http://kbroman.org/minimal_make), run 
+   make if2.pdf
+   on a Linux machine.
+
+if2.Rnw: The knitr source file
+
+if2.bib: The bibtex bibliography file
+
+pnas2009.bst, pnastwo.cls: Latex formatting files

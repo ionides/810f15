@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,url,verbatim}\setlength{\parskip}{3mm}\setlength{\parindent}{0mm}
+\begin{document}
+
+\begin{center}\bf
+Homework 12. Due by 5pm on Wednesday 12/2.
+
+Integrating text and code: dynamic documents via knitr
+
+\end{center}
+
+As discussed in class, there are numerous advantages to writing a statistics paper in such a way that the tables, figures and other quantitative results are automatically generated from chunks of code included in the document. These include:
+\begin{enumerate}
+\item Changing the data. Questions like ``How stable are my conclusions? What happens to all my figures and tables if I omit the 5 smallest states from my panel of 50 states?'' can be rapidly answered. The easier it is to investigate new analyses, the more things you try. 
+\item Effective collaboration. All coauthors can read, run and modify all the code that produced the figures in the current version of a circulated draft.
+\item Debugging. If your adviser asks ``How exactly did this number get produced?'' you can give a rapid, precise and accurate answer.
+\item Updating. If you are presenting code (e.g., lecture notes) and you want to make changes where necessary for a new software version, you simply re-run the document.
+\item Revisions. 4 months after you submitted the paper, when the referee reports come back, you will be glad if you have your work organized in this way!
+\end{enumerate}
+This homework asks you to carry out a few manipulations on a knitr document. Specifically, we consider the task of reproducing a recent paper prepared as a knitr document. This paper is not to be considered as a model of high-quality reproducibility, but rather as an example of some modest efforts toward the goal of reproducibility.
+
+Please carry out the following tasks and report back to me by email if you successfully complete them or hit obstacles.
+\begin{enumerate}
+\item Download the files in
+\url{http://dept.stat.lsa.umich.edu/~ionides/810/knitr_example}
+
+\item Software gets out of date fast! The code is broken if you use the current version of the R package \texttt{pomp}. The computations used \url{pomp_0.53-1} which you can download and install, as in homework 10, from
+
+\url{https://cran.r-project.org/src/contrib/Archive/pomp/}
+
+(The knitr file and/or the paper should have said the versions of R and \texttt{pomp} used, but did not.)
+
+\item Try various ways to generate the pdf file from the Rnw file. Specifically, 
+\begin{enumerate}
+\item In an R session, with the knitr package installed,
+\begin{verbatim}
+   require(knitr)
+   knit("if2.Rnw")
+\end{verbatim}
+   Then, run Latex on the resulting if2.tex file
+
+\item From a Linux terminal prompt,
+\begin{verbatim}
+   Rscript -e "require(knitr); knit('if2.Rnw')"
+\end{verbatim}
+Then, run Latex on the resulting if2.tex file
+
+\item Using the make program (\url{http://kbroman.org/minimal_make}).
+On a Linux machine, making sure that the HW12 files (including Makefile) are all in the current working directory,
+\begin{verbatim}
+   make if2.pdf
+\end{verbatim}
+
+\item Using RStudio. Open if2.Rnw in RStudio and click `Compile pdf.'
+   This failed to run for me. I suspect that my file contains some deprecated knitr syntax, included for back-compatibility with Sweave and no longer supported by RStudio. I'm not much of an RStudio user, but RStudio seems to be increasingly prevalent. Optionally, if you can debug this, please let me know!
+\end{enumerate}
+
+\item Question: which of these approaches could you get to work? What are the advantages and disadvantages of each approach? Which could be used on flux?
+
+
+\item Look through if2.Rnw, focusing on the code chunks. You don't really have to understand much about knitr to do this, but if you like you can browse \url{http://yihui.name/knitr/}.
+
+\begin{enumerate}
+\item Notice the flag \texttt{TEST=TRUE}. This runs a quick version of the code, to check for syntax errors before running a big job.
+\item If you set \texttt{TEST=FALSE}, the code will take several hours on 100 flux cores. If you were to do that (which you are not expected to do) you should be able to perfectly match the figures in the published paper, at
+\url{http://www.pnas.org/content/112/3/719}. The R code published as supporting information on the journal website, was extracted from the Rnw file by 
+\begin{verbatim}
+knitr::purl("if2.Rnw")
+\end{verbatim}
+
+\item How is caching done? Specifically, how does the code decide whether to re-run the long computations? Hint: this is done explicitly, without relying on knitr's built-in caching system.
+
+\item Notice how the random number generator seed is set to give reproducible results (e.g., search for ``seed'' in if2.Rnw). Subtle problems can arise when setting seeds for parallel computations. Can you think of any? Perhaps the solution here should be improved. 
+
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

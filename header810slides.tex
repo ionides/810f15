@@ -1,0 +1,53 @@
+\slidefontsizes{10}
+
+\newcommand\bs{\begin{slide*}}
+\newcommand\es{\end{slide*}}
+
+\newcommand\bi{\begin{myitemize}}
+\newcommand\ei{\end{myitemize}}
+
+
+\usepackage{ulem}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,graphicx}
+
+\usepackage{color,semcolor}
+\definecolor{green}{rgb}{0,0.8,0.2}
+
+\newcommand\prob{\mathbb{P}}
+\newcommand\E{\mathbb{E}}
+\newcommand\SampleSpace{\mathbb{S}}
+\newcommand\R{\mathbb{R}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Var{\mathrm{Var}}
+\newcommand\Cov{\mathrm{Cov}}
+%\newcommand\mydefinition[1]{{\ \uwave{#1}}}
+%\newcommand\mydefinition[1]{{\red \textbf{#1}}}
+\newcommand\mydefinition[1]{{\textbf{#1}}}
+\newcommand\mymath{\blue }
+%\newcommand\myproof{\underline{Proof:} }
+\newcommand\myproof{{Proof:} }
+\newcommand\equals{{=}\,}
+\newcommand\given{{\, | \,}}
+
+\newcommand\hd[1]{\centerline{\large\bf #1}}
+\newcommand\shd[1]{\underline{\large #1}}
+
+\slideframe{none}
+\newenvironment {myitemize} {
+                 \begin{list}{$\bullet$ \hfill}
+                 {\setlength{\labelwidth}{0.3 cm}
+                  %\setlength{\leftmargin}{0em}
+                  \setlength{\leftmargin}{0.15cm}
+                  \setlength{\itemindent}{0.15cm}
+                  \setlength{\labelsep}{0cm}
+                  \setlength{\parsep}{0.2 ex}
+%                  \setlength{\itemsep}{0.25 cm}
+                  \setlength{\itemsep}{0.15 cm}
+      \setlength{\topsep}{0.1cm}}} %space between title and 1st item
+   {\end{list}}
+
+\newenvironment {myequation} {\vspace{-1mm}\begin{equation*}}{\end{equation*}\vspace{1mm}}
+
+\newenvironment {myeqnarray} {\vspace{-1mm}\mymath \begin{eqnarray*}}{\end{eqnarray*}\vspace{-1mm}}
+
+

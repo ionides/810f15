@@ -1,0 +1,206 @@
+\documentclass[portrait,11pt]{seminar}
+
+\include{header810slides}
+
+\begin{document}
+\bs
+\underline{\bf Data and the reproducibility of research results
+}
+
+\medskip
+
+{\bf What are the roles of `data' and `reproducibility' in the scientific method? }
+
+{\it ``Data is the fundamental building block from which scientific knowledge grows; extensions of work rely on the data representing fundamental scientific truths. In this case, reproducibility is the means by which we can verify these truths and thus guarantee forward progress of science.''}
+
+% 2014 \it ``Valid scientific findings from an experiment are reproducible. That is, an independent researcher following the same study procedure should be able to collect new data, analyze it, and draw a similar conclusion. Release of data is one way to allow others to verify that the original experimental data were analyzed correctly.''
+
+
+% 2013 ``The sharing of data is important to the transparency of science; it allows others to see how one arrives to their conclusions. Reproducibility of experiments is vital in the scientic pursuit of truth; only when results can be repeated can a phenomenon be confirmed to be true.''
+
+% 2013 Data are important in the scientic method, because data provide the support for the arguments and the conclusions of a project. Reproducibility provides the evidence that a specic rule of nature or result can be applied, which means that the results of a single experiment are not simply a fluke. Data and reproducibility fit into the scientic method by providing evidence and support for conclusions.
+
+
+\es  \bs {\bf What are the federal requirements on sharing data? To what extent do you think these rules are enforced?}
+
+{\it ``It requires civilian federal agencies to provide guidelines, policy and procedures, to facilitate and optimize the open exchange of data and research between agencies, the public and policymakers.''}
+
+
+\es
+
+\bs
+COMPARE THIS TO ANOTHER RESPONSE:
+
+\medskip
+
+{\it ``According to Wiki the federal requirements on sharing data as stated by the America COMPETES Act 2007 `require civilian federal agencies to provide guidelines, policy and procedures, to facilitate and optimize the open exchange of data and research between agencies, the public and policymakers.' the requirements as far as I understand are stated in loose general terms and any agency can evade the act. It is not a binding requirement but the agencies would have to show valid reasons to withhold data and eliminates chances of being whimsical.''}
+
+\es
+
+\bs
+
+THE FIRST RESPONSE WAS AN UNATTRIBUTED DIRECT QUOTE FROM WIKIPEDIA.
+
+\medskip
+
+LET'S SHARE SOME THOUGHTS ABOUT HOW THIS FITS IN WITH OUR PREVIOUS DISCUSSION ON PLAGIARISM.
+
+% 2014 \it  ``Data used in federal agencies is shared publicly or upon request. My guess is that this policy is for the most part followed.''
+
+% 2013 ``I think that authors need to share any supplemental information (raw data, statistical methods or source code) if their paper was published.''
+
+% 2014 ``NIH and NSF both encourage data sharing. NIH requires a data sharing plan from researches who receive very large grants. Both funding bodies recognize that release of data is limited by cost, time and privacy rules. For most grants, it seems that no data sharing rules are enforced.''
+
+\es
+\bs
+
+{\it ``When a scientific book or paper is published, the authors must provide the data based on which they drew their conclusions. To my knowledge, I think these rules are well enforced since most papers I read have the source of data and the procedure of how to generate the data.''}
+
+\medskip
+
+I THINK THIS IS NOW HAPPILY THE CASE IN MANY LEADING JOURNALS. IT WAS NOT, 5 YEARS AGO. 
+
+\es  \bs {\bf Advanced statistical methods often require sophisticated computational implementations. Should statistical researchers be expected to share their computer code on request?}
+
+{\it ``I think they should share their code on request, or at least core code. If they plan on somehow monetizing their code, or having some other reason to keep it secret, then they need to think about what claims they make in their paper, and should at least make sure some of the basic versions are available.''}
+
+% 2014 A. ``To encourage reproducible research, statisticians should meet requests for their computer code unless they are limited by copyright or intellectual property rules.''
+
+% 2014 B. ``I believe statistical researchers should be expected to share their computer code on request only if there are compelling reasons to do so.''
+
+% 2013 1. ``I believe that statistical researchers should be expected to share their computer code.''
+
+% 2013 2. ``The answer is ideally yes, but care must be taken so that other people do not profit of one's own code.''
+
+% 2013 3. ``I think this depends on the researchers' own willingness.  They could provide a clear guidance on how the algorithm works, instead of sharing the code directly.''
+
+\es
+\bs Why would a statistican NOT share code? 
+
+\vspace{3cm}
+
+Does scientific secrecy ever have benefits to the individual? If so, how should one decide when to keep scientific secrets, bearing in mind the possible cost to scientific reputation (or lost opportunity to earn it)?
+
+\es
+
+
+\bs {\bf What is the difference between data and a statistical model for the data? For example, comment on the assertion ``Let $y_1,\dots,y_n$ be independent identically distributed data.''}
+
+{\it ``Data is just a collection of information. A statistical model is a description of the data proposed by a researcher from his perspective. It may be true or may not. Here $y1,\dots,y_n$ being iid is an assumption which says that the $y$ observations are unrelated data that are generated from the same population or share the same source. This is an idea that a researcher has about data which is not necessarily true. The actual data will be the observations themselves.''}
+
+
+% 2013 ``Whereas data usually refers to the sample which is available to us for analysis, statistical model usually refers to the distribution structure from where the data has been sampled. The assertion basically means that $y_1,\dots,y_n$ are the values of random variables $Y_1,\dots, Y_n$ which are independent and come from the same distribution. Here the values of $y_1,\dots,y_n$ is like the data whereas the assumption of independence and identical distribution is like statistical modeling of the data.''
+
+% 2014 ``Quantitative data is explicit numbers collected either through experiment/observation/simulation which uses statistical models in order to analyze. The quotation above is a statement about a model.''
+
+
+% 2014 ``Data is data, such as data collected from an experiment. Statistical model for the data is a model which (we propose) generates the data. `Let $y_1,\dots,y_n$ be independent identically distributed data' is understandable but not rigorous. The rigorous way to say it is `$Y_1,\dots,Y_n$ are i.i.d. random variables, and $y_1,\dots,y_n$ is an observation.' ''
+
+\es
+\bs
+
+``We must be careful not to confuse data with the abstractions we use to analyze them.'' (William James, 1842--1910)
+
+%``Essentially, all models are wrong, but some are useful.'' (George Box, 1919--2013)
+
+\medskip
+
+THIS SUGGESTS DATA MAY HAVE A HIGHER ROLE THAN MODELS. BUT ONE RESPONSE POINTED OUT AN OPPOSITE VIEW:
+
+\medskip
+
+{\it ``Statistical models for data are an additional layer of thinking/information on the data, and might be as important and valuable as the data itself. For example anyone can get info about stock market movement for free online, but stochastic models for that and estimates of parameters for those models can be extremely valuable.''}
+
+\es
+\bs
+
+(i) What sort of mathematical objects does the definition of iid apply to?
+
+\medskip
+
+\medskip
+
+\medskip
+
+(ii) What sort of mathematical objects are data?
+
+\medskip
+
+\medskip
+
+\medskip
+
+(iii) Can data be iid?
+
+\es
+
+
+\bs
+
+The remaining questions consider the following hypothetical case study:
+
+Ben is a Statistics PhD student who has written computer code for a simulation study to test a new statistical theory and methodology which he is developing.
+He plans to put the results in his thesis and to publish them in a journal paper.
+The results of the simulations are usually consistent with his theoretical analysis. 
+However, sometimes the code crashes, particularly when investigating more extreme values of the parameter space.
+Ben has checked and rechecked the code very carefully, and cannot find any error.
+He decides that there must be some weird numerical effect, perhaps to do with occasional extremely large or small numbers.
+Ben decides to report the results only in the region of the parameter space where the code never crashed. 
+
+\es  \bs {\bf Is Ben's course of action a reasonable balance between the necessity to make progress on his thesis and his desire to report correct results? }
+
+{\it  ``It seems that Ben has put reasonable time and effort to report correct results. However, he still needs to disclosure the condition when the code crashes. If he could not find the explicit bug in his code, at least he should try to identify and introduce the range of parameters that gives the consistent results. Without such disclosures, he is trying to deceive readers by pretending that his code contains no errors.''}
+
+
+% 2014 A. ``It is a reasonable balance. Since `there is no perfect paper,' if the method only valid  for a subset of the parameters is already a big progress comparing to the existing method, it is worth publishing. But he should point this out clearly when stating the simulation results.
+
+% 2014 B. ``I think Ben should have asked for assistance from someone regarding the issue, and the course action taken by him might be harmful for him if he does not determine what the cause of the crashes was.''
+
+
+%1. ``I think Ben's action is a reasonable balance.''
+
+% 2. ``No, he should try to work out the kinks in his code and/or theory first.''
+
+\es
+
+\bs {\bf What are the `data' in this example? What is `reproducibility' in this context?}
+
+{\it ``The data are the simulated data sets generated for the paper. Reproducibility is the ability to take the functions and run them on this data set on one’s own computer; the random number generator seed should be saved so the exact numbers and estimates in the paper are replicated.''}
+
+% 2014 \it ``The data in this example is both the code and the simulations that he used. Reproducibility should mean that whatever Ben states about his methodology and code should be completely true. So if Ben does not mention the crashing, then the code should not crash.''
+
+% 2014 \it ``The results of the simulations are the data. The code is the way to get reproducibility.''
+
+
+\es  \bs {\bf Ben asks your opinion on how to proceed. What is your advice?}
+
+{\it ``I would suggest Ben double-check the code and find where the numerical effects happen. Or he could turn to expertise on numerical effects for help.''}
+
+% 2014 \it ``I would tell Ben to talk to his advisor who might know what issues exist with computing and similar models. It couldn't hurt to talk to a computer scientist as well. If he wants to publish the results, I would tell him to acknowledge the crashes and explain the steps he's taken to figure out why it crashes.''
+
+
+% 2014 ``Ben needs to reassess his reliability of the new statistical methodology and figure out problems that may arise in values outside of his region of parameter space where the code did not crash.''
+
+\medskip
+
+%[AND A RESPONSE FROM A PREVIOUS COURSE, BY AN EXPERIENCED PROGRAMMER:]
+
+{\it ``Ben should fix the bug!''}
+
+\medskip
+
+{\it ``My advice would be mentioning the failure of the alogrithm in the report. Reporting this failure is indeed useful for future studies.''}
+
+
+%1. (a) ``He should report the limitation of his program.''
+
+%. (b) ``He should find some papers for extreme values on the paramenter space or he should report the problem in his thesis.''
+
+%1. (b) ``Ben should proceed with caution towards a publication... If no one can identify the reason why the code crashes, Ben should also mention in his paper that the code does not produce output for some extreme cases.''
+
+%2. (a) ``No. I think he should report that his method is correct for the specied region and either the code or the theory is not working for extreme points.''
+
+%2. ``My advice is Ben should gure out what causes the crash for the data. It is acceptable to publish the results only if he has a reasonable explanation about both the theory and the simulation results to make them consistent.''
+
+\es
+\end{document}
